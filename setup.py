@@ -7,8 +7,8 @@ setup(
     author="Jckhmr",
     packages=find_packages(),
     install_requires=[
-        "gql",  # Or whatever version you're using
-        "requests_toolbelt"
+        "gql>=3.4.0",
+        "requests_toolbelt>=1.0.0"
     ],
     python_requires=">=3.7",
 )
