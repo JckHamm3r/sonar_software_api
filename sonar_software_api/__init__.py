@@ -1,1 +1,1 @@
-from .client import Sonar, graphql
+from .client import Sonar
