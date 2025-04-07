@@ -1,22 +1,14 @@
 # sonar_software_api
 
-A lightweight Python wrapper for sending GraphQL queries to your [Sonar Software](https://sonar.software) instance.
+A simple Python wrapper for sending GraphQL queries to your [Sonar Software](https://sonar.software) instance using the [`gql`](https://github.com/graphql-python/gql) library.
 
 ## 🔍 What is this?
 
-`sonar_software_api` simplifies the process of authenticating and making GraphQL requests to your Sonar instance. Instead of manually setting headers and crafting requests, you can focus on writing your queries and working with the results.
+`sonar_software_api` lets you easily connect to your Sonar instance and fire off GraphQL queries using a clean and reusable interface.
 
 ## 🚀 Features
 
-- Quick setup with your instance URL and API token
-- Execute any GraphQL query or mutation
-- Clean JSON responses
-- Helpful error messages and exception handling
-- Lightweight and dependency-free (except for `requests`)
-
-## 💻 Installation
-
-Once published to PyPI:
-
-```bash
-pip install sonar_software_api
+- Dead simple setup — just plug in your URL and token
+- Uses `gql`, a modern GraphQL client for Python
+- Designed for quick scripting or scalable reuse
+- Clean and Pythonic syntax
