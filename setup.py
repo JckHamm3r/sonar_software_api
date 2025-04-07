@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="sonar_software_api",
-    version="0.1.0",
+    version="0.1.2",
     description="A simple GraphQL client for interacting with your Sonar Software instance",
     author="JckHamm3r",
     packages=find_packages(),
