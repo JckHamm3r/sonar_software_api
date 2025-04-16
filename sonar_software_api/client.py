@@ -14,3 +14,75 @@ class Sonar:
 
     def graphql(self, query, variables=None):
         return self.client.execute(gql(query), variable_values=variables)
+
+
+    def getAccounts(self, id=None, qty=None):
+        if id and qty == None:
+            inputs = ""
+        elif id != None and qty == None:
+            inputs = f"""(id:{id})"""
+        elif id == None and qty != None:
+            input = f"""(paginator:{{page:1, records_per_page:{qty}}})"""
+        elif id != None and qty !=None:
+            input = f"""(id:{id}, paginator:{{page:1, records_per_page:{qty}}})"""
+        query = f"""{{
+                    accounts{input}{{
+                        entities {{
+                        id
+                        name
+                        account_status {{
+                            id
+                            activates_account
+                        }}
+                        account_services {{
+                            entities {{
+                            id
+                            service {{
+                                id
+                                name
+                                type
+                                amount
+                                data_service_detail {{
+                                upload_speed_kilobits_per_second
+                                download_speed_kilobits_per_second
+                                }}
+                            }}
+                            }}
+                        }}
+                        addresses {{
+                            entities {{
+                            id
+                            inventory_items {{
+                                entities {{
+                                inventory_model {{
+                                    id
+                                    name
+                                    manufacturer {{
+                                    id
+                                    name
+                                    }}
+                                }}
+                                inventory_model_field_data {{
+                                    entities {{
+                                    value
+                                    ip_assignments {{
+                                        entities {{
+                                        subnet_id
+                                        subnet
+                                        }}
+                                    }}
+                                    inventory_model_field {{
+                                        id
+                                        name
+                                    }}
+                                    }}
+                                }}
+                                }}
+                            }}
+                            }}
+                        }}
+                        }}
+                    }}
+                    }}"""
+        
+        return self.graphql(query, None)['accounts']['entities']
