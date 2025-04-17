@@ -90,7 +90,7 @@ class Sonar:
 
     def getAccountServices(self):
         query = """{
-                    account_services{
+                    account_services(paginator:{page:1, records_per_page:1000000}){
                         entities{
                         service{
                             name
@@ -109,3 +109,68 @@ class Sonar:
                     }"""
         
         return self.graphql(query, None)['account_services']['entities']
+
+
+    def getAddressLists(self):
+        query = """{
+                    address_lists(paginator:{page:1, records_per_page:1000000}){
+                        entities{
+                        id
+                        name
+                        account_statuses{
+                            entities{
+                            id
+                            name
+                            }
+                        }
+                        services{
+                            entities{
+                            id
+                            name
+                            }
+                        }
+                        }
+                    }
+                    }"""
+        
+        return self.graphql(query, None)['address_lists']['entities']
+    
+
+    def getAccountStatuses(self):
+        query = """{
+                    account_statuses(paginator:{page:1, records_per_page:1000000}){
+                        entities{
+                        id
+                        name
+                        activates_account
+                        }
+                    }
+                    }"""
+        
+        return self.graphql(query, None)['account_statuses']['entities']
+    
+    
+    def getDhcpServers(self):
+        query = """{
+                    dhcp_servers(paginator:{page:1, records_per_page:1000000}){
+                        entities{
+                        id
+                        name
+                        ip_address
+                        ip_pools{
+                            entities{
+                            id
+                            name
+                            subnet{
+                                subnet
+                            }
+                            ips_available
+                            ip_range
+                            }
+                        }
+                        }
+                    }
+                    }"""
+        return self.graphql(query, None)['dhcp_servers']['entities']
+    
+
