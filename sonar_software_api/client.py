@@ -86,3 +86,26 @@ class Sonar:
                     }}"""
         
         return self.graphql(query, None)['accounts']['entities']
+    
+
+    def getAccountServices(self):
+        query = """{
+                    account_services{
+                        entities{
+                        service{
+                            name
+                            id
+                            type
+                            amount
+                            enabled
+                            company_id
+                            data_service_detail{
+                            download_speed_kilobits_per_second
+                            upload_speed_kilobits_per_second
+                            }
+                        }
+                        }
+                    }
+                    }"""
+        
+        return self.graphql(query, None)['account_services']['entities']
