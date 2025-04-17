@@ -52,6 +52,16 @@ class Sonar:
                         addresses {{
                             entities {{
                             id
+                            latitude
+                            longitude
+                            line1
+                            line2
+                            city
+                            subdivision
+                            zip
+                            county
+                            country
+                            fips
                             inventory_items {{
                                 entities {{
                                 inventory_model {{
